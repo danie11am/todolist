@@ -14,7 +14,7 @@ function TodoListController($scope, $http, $timeout) {
   };
 
   $scope.update = function(todo) {
-    $http.put('/todo/' + todo._id + '.json', todo).success(function(data) {
+    $http.put('/examples/todolist/todo/' + todo._id + '.json', todo).success(function(data) {
       if (!data.todo) {
         alert(JSON.stringify(data));
       }
@@ -22,7 +22,7 @@ function TodoListController($scope, $http, $timeout) {
   };
 
   $scope.updateList = function() {
-    $http.get('/todos.json').success(function(data) {
+    $http.get('/examples/todolist/todos.json').success(function(data) {
       $scope.todos = data.todos;
     });
 
@@ -39,7 +39,7 @@ function TodoListController($scope, $http, $timeout) {
 
 
   $scope.addNewTodo = function() {
-    $http.post('/todo.json', $scope.newTodo).success(function(data) {
+    $http.post('/examples/todolist/todo.json', $scope.newTodo).success(function(data) {
       if (data.todo) {
         $scope.todos.push(data.todo);
         $scope.newTodo.description = '';

@@ -1,9 +1,9 @@
 extends layout
 
 block head
-  link(rel='stylesheet', href='/javascripts/vendor/bootstrap-css/css/bootstrap.css')
+  link(rel='stylesheet', href='/examples/todolist/javascripts/vendor/bootstrap-css/css/bootstrap.css')
 
-  script(type='text/javascript', src='/javascripts/controllers/TodoListController.js')
+  script(type='text/javascript', src='/examples/todolist/javascripts/controllers/TodoListController.js')
 
 block content
   div.container(ng-controller="TodoListController", ng-init="setTodos( #{JSON.stringify(todos)} )")
