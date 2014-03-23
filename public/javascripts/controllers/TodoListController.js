@@ -28,12 +28,12 @@ function TodoListController($scope, $http, $timeout) {
 
     $timeout(function() {
       $scope.updateList();
-    }, 10 * 1000); // 30 * 60 * 1000); // update every 30 minutes;
+    }, 30 * 60 * 1000); // update every 30 minutes;
   };
 
   $timeout(function() {
     $scope.updateList();
-  }, 10 * 1000); // 30 * 60 * 1000); // update every 30 minutes;
+  }, 30 * 60 * 1000); // update every 30 minutes;
 
   $scope.updateList();
 
