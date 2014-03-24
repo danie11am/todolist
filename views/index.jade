@@ -7,9 +7,11 @@ block head
 
 block content
   div.container(ng-controller="TodoListController", ng-init="setTodos( #{JSON.stringify(todos)} )")
-    h1 Daniel's Todo List
-    div Source codes can be found in https://github.com/danie11am/todolist
-    h2 Add New
+    h2 A To-do list web app
+    div 
+      | A simple Node.js app.  
+      | <a href="https://github.com/danie11am/todolist">Open-sourced in github.</a>
+    h3 Add New
     form(novalidate, ng-submit="addNewTodo()")
       textarea( ng-model="newTodo.description",
                 placeholder="Description")
