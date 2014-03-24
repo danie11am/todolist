@@ -1,11 +1,11 @@
 /**
- * This is the entry point of the node.js application.
+ * This is the starting point of the node.js application.
  * 
  * The app is started by running
  * 
- * 		node app.js
+ * 		node todolist.js
  * 
- * This file does a few important bootstraping things:
+ * This file carries out a few important steps for bootstraping:
  * - Include the dependencies.
  * - Specify important parameters such as the port to listen to.
  * - Defines handler functions for different REST-ful paths your clients can access.
@@ -19,9 +19,12 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
+// Create an instance of Express server.
 var app = express();
 
 var Mongoose = require('mongoose');
+
+// Create a connection to "mytestapp" mongoDB database in localhost.
 var db = Mongoose.createConnection('localhost', 'mytestapp');
 
 var TodoSchema = require('./models/Todo.js').TodoSchema;
@@ -30,8 +33,13 @@ var Todo = db.model('todos', TodoSchema);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
+
+// Set the "views" path - who use it?
 app.set('views', path.join(__dirname, 'views'));
+
+// Use Jade as view engine.
 app.set('view engine', 'jade');
+
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
