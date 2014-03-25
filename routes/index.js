@@ -6,7 +6,7 @@ exports.index = function(Todo) {
   return function(req, res) {
     Todo.find({}, function(error, todos) {
       res.render('index', {
-        title: 'A Node.js Example - To-do List',
+        pageTitle: 'To-do List',
         todos : todos
       });
     });
