@@ -28,16 +28,19 @@ var Mongoose = require('mongoose');
 var db = Mongoose.createConnection('localhost', 'mytestapp');
 
 var TodoSchema = require('./models/Todo.js').TodoSchema;
-var Todo = db.model('todos', TodoSchema);
+var TodoModel = db.model('todos', TodoSchema);
 
 
-// all environments
+// Apply settings that are relevent to all environments.
+
 app.set('port', process.env.PORT || 3000);
 
 // Set the "views" path - who use it?
 app.set('views', path.join(__dirname, 'views'));
 
 // Use Jade as view engine.
+// View engine renders UI pages, i.e. create the final HTML pages that will be sent to browsers.
+// View engine is used in res.render() calls in index.js.
 app.set('view engine', 'jade');
 
 app.use(express.favicon());
@@ -47,28 +50,27 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 
-// This probably maps the public directory to serve static content.
+// Maps the public directory to serve static content.
 app.use(express.static(path.join(__dirname, 'public')));
 
-// development only
+// Apply development environment-specific settings. 
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+
 // Map web request URL paths to handler files.
 
 // This specifies the handler for "/" requests to be routes/index.js.
+app.get('/', routes.index(TodoModel));
 
-
-app.get('/', routes.index(Todo));
 app.get('/users', user.list);
-app.post('/todo.json', routes.addTodo(Todo));
-
-app.put('/todo/:id.json', routes.update(Todo));
-
-app.post('/todo.json', routes.addTodo(Todo));
+app.post('/todo.json', routes.addTodo(TodoModel));
+app.put('/todo/:id.json', routes.update(TodoModel));
+app.post('/todo.json', routes.addTodo(TodoModel));
 
 
+// Create HTTP server that starts listening to specified port.
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

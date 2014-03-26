@@ -1,11 +1,16 @@
 //- 
 //- Jade file for the index page.
 //-
-//- A quick tutorial for Jade: http://jade-lang.com/tutorial/
-//- 
-//- "extends" is a Jade keyword. Here it means that the generated HTML file will be the same as layout.jade, 
-//- except that some variables ("head" and "content") in layout.jade will be replaced by whatever defined below.
+//- Jade is a "Node template engine", it helps you do 2 things: 
+//- 1) You don't need to write HTML tags. You write page in Jade syntax which is supposed to be cleaner.
+//- 2) Jade helps you present backend data in fron-end pages. E.g. "title= <backend variable>" in layout.jade. 
+//-    Or "#{<variable>}" when in the middle of line. This is a bit like PHP.
 //-
+//- More about Jade at http://jade-lang.com/tutorial/
+
+
+//- "extends" is a Jade keyword. Here it means that the generated HTML file will be the same as layout.jade except 
+//- that some variables ("head" and "content") in layout.jade will be replaced by whatever defined below.
 extends layout
 
 block head
@@ -15,8 +20,10 @@ block head
   script(type='text/javascript', src='/examples/todolist/javascripts/controllers/TodoListController.js')
 
 block content
+
   //- "div.container(abc='xyz')" is a Jade syntax. It will be translated to "<div class="container" abc='xyz)> </div>".
-  div.container(ng-controller="TodoListController", ng-init="setTodos( #{JSON.stringify(todos)} )")
+  //- The setTodos() method pass the to-do item data from backend to front-end. 
+  div.container(ng-controller="TodoListController", ng-init="setTodos( #{JSON.stringify(todosBackend)} )")
     h2 A To-do list web app
     div 
       | A simple Node.js app.  

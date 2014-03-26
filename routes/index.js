@@ -1,13 +1,13 @@
 /*
- * GET home page.
+ * Backend calls.
  */
 
 exports.index = function(Todo) {
   return function(req, res) {
-    Todo.find({}, function(error, todos) {
+    Todo.find({}, function(error, todosParam) {
       res.render('index', {
         pageTitle: 'To-do List',
-        todos : todos
+        todosBackend : todosParam
       });
     });
   };
