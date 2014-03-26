@@ -1,19 +1,21 @@
-//- In Jade files, "//-" indicates start of a comment line.
 //- 
-//- Index page.
+//- Jade file for the index page.
 //-
-//- "extends" is a Jade keyword. Here it means that the generated HTML file
-//- will line will be same as layout.jade, except that some variables ("head"
-//- and "content") will be replaced by whatever is defined below.
+//- A quick tutorial for Jade: http://jade-lang.com/tutorial/
+//- 
+//- "extends" is a Jade keyword. Here it means that the generated HTML file will be the same as layout.jade, 
+//- except that some variables ("head" and "content") in layout.jade will be replaced by whatever defined below.
 //-
 extends layout
 
 block head
   link(rel='stylesheet', href='/examples/todolist/javascripts/vendor/bootstrap-css/css/bootstrap.css')
 
+  //- Include a "controller" - This is an AngularJS convention. See TodoListController.js for more details.
   script(type='text/javascript', src='/examples/todolist/javascripts/controllers/TodoListController.js')
 
 block content
+  //- "div.container(abc='xyz')" is a Jade syntax. It will be translated to "<div class="container" abc='xyz)> </div>".
   div.container(ng-controller="TodoListController", ng-init="setTodos( #{JSON.stringify(todos)} )")
     h2 A To-do list web app
     div 

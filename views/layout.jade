@@ -1,17 +1,13 @@
-//- In Jade files, "//-" indicates start of a comment line.
-//-
-//- Generic HTML structure of any page. 
+//- Jade file for generic layout.
 //-
 doctype html
 
-//- "ng-app" is an AngularJS feature. By having ng-app as an attribute of the
-//- html tag, the whole html document is controllable by AngularJS. 
+//- "ng-app" is an AngularJS feature. By having ng-app as an attribute of the html tag, the whole html document is 
+//- controllable by AngularJS. 
 html(ng-app="TodoModule")
   head
-    //- The format <html tag>= such as "title=" below is a Jade feature.
-    //- Jade will treat whatever follows the equal sign as variable. 
-    //- In this case, "pageTitle" is a variable supplied by index.js in
-    //- the render() call.
+    //- The format <html tag>= such as "title=" below is a Jade feature. Jade will treat whatever follows the equal 
+    //- sign as variable. In this case, "pageTitle" is a variable supplied by index.js in the render() call.
     title= pageTitle
     link(rel='stylesheet', href='/stylesheets/style.css')
     
