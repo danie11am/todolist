@@ -6,7 +6,7 @@
  * 		node todolist.js
  * 
  * This file carries out a few important steps for bootstraping:
- * - Include the dependencies.
+ * - Include the dependent modules.
  * - Specify important parameters such as the port to listen to.
  * - Defines handler functions for different REST-ful paths your clients can access.
  * 
