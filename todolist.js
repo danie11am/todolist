@@ -30,6 +30,8 @@ var db = Mongoose.createConnection('localhost', 'mytestapp');
 var TodoSchema = require('./models/Todo.js').TodoSchema;
 var TodoModel = db.model('todos', TodoSchema);
 
+// Set default site path.
+var urlPath = '/examples/todolist';
 
 // Apply settings that are relevent to all environments.
 
@@ -55,14 +57,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Apply development environment-specific settings. 
 if ('development' == app.get('env')) {
+
   app.use(express.errorHandler());
+  
+  // Overwrite URL path to use root path.
+  urlPath = '';
 }
 
 
 // Map web request URL paths to handler files.
 
-// This specifies the handler for "/" requests to be routes/index.js.
-app.get('/', routes.index(TodoModel));
+// Specifies handler for GET requests on "/" to be routes/index.js.
+app.get('/', routes.index(TodoModel, urlPath));
 
 app.get('/users', user.list);
 app.post('/todo.json', routes.addTodo(TodoModel));

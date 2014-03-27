@@ -47,7 +47,7 @@ function TodoListController($scope, $http, $timeout) {
   $scope.update = function(todo) {
   	
   	// Send a HTTP PUT request to backend to update todo item.
-    $http.put('/examples/todolist/examples/todolist/todo/' + todo._id + '.json', todo).success(function(data) {
+    $http.put($scope.urlPathFrontend + '/todo/' + todo._id + '.json', todo).success(function(data) {
       if (!data.todo) {
         alert(JSON.stringify(data));
       }
@@ -60,7 +60,7 @@ function TodoListController($scope, $http, $timeout) {
   $scope.updateList = function() {
 
   	// Send a HTTP GET request to backend to get list of todo items.
-    $http.get('/examples/todolist/todos.json').success(function(data) {
+    $http.get($scope.urlPathFrontend + '/todos.json').success(function(data) {
     	
       // If new todo list is returned successfully from backend then overwrite current frontend todos with it. 
       $scope.todos = data.todos;
@@ -91,7 +91,7 @@ function TodoListController($scope, $http, $timeout) {
   $scope.addNewTodo = function() {
   	
   	// Send a HTTP POST request to backend to add a new todo items.
-    $http.post('/examples/todolist/todo.json', $scope.newTodo).success(function(data) {
+    $http.post($scope.urlPathFrontend + '/todo.json', $scope.newTodo).success(function(data) {
       if (data.todo) {
         $scope.todos.push(data.todo);
         $scope.newTodo.description = '';

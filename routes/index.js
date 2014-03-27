@@ -2,12 +2,13 @@
  * Backend calls.
  */
 
-exports.index = function(Todo) {
+exports.index = function(Todo, urlPathBackend) {
   return function(req, res) {
     Todo.find({}, function(error, todosParam) {
       res.render('index', {
         pageTitle: 'To-do List',
-        todosBackend : todosParam
+        todosBackend : todosParam,
+        urlPath: urlPathBackend
       });
     });
   };

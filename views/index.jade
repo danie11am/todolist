@@ -14,16 +14,16 @@
 extends layout
 
 block head
-  link(rel='stylesheet', href='/examples/todolist/javascripts/vendor/bootstrap-css/css/bootstrap.css')
+  link(rel='stylesheet', href='#{urlPath}/javascripts/vendor/bootstrap-css/css/bootstrap.css')
 
   //- Include a "controller" - This is an AngularJS convention. See TodoListController.js for more details.
-  script(type='text/javascript', src='/examples/todolist/javascripts/controllers/TodoListController.js')
+  script(type='text/javascript', src='#{urlPath}/javascripts/controllers/TodoListController.js')
 
 block content
 
   //- "div.container(abc='xyz')" is a Jade syntax. It will be translated to "<div class="container" abc='xyz)> </div>".
   //- The setTodos() method pass the to-do item data from backend to front-end. 
-  div.container(ng-controller="TodoListController", ng-init="setTodos( #{JSON.stringify(todosBackend)} )")
+  div.container(ng-controller="TodoListController", ng-init="setTodos( #{JSON.stringify(todosBackend)} ); urlPathFrontend='#{urlPath}'")
     h2 A To-do list web app
     div 
       | A simple Node.js app.  
