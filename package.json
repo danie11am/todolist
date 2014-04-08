@@ -1,3 +1,6 @@
+/**
+ * Cnofig file used by npm (Node Package Manager). 
+ */
 {
   "name": "application-name",
   "version": "0.0.1",

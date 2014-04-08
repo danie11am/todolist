@@ -14,10 +14,11 @@
 
 // Module dependencies.
 var express = require('express');
-var routes = require('./routes');
+var routes = require('./routes'); // This is automatically mapped to index.js in routes direcotry.
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+
 
 // Create an instance of Express server.
 var app = express();
@@ -30,8 +31,10 @@ var db = Mongoose.createConnection('localhost', 'mytestapp');
 var TodoSchema = require('./models/Todo.js').TodoSchema;
 var TodoModel = db.model('todos', TodoSchema);
 
+
 // Set default site path.
 var urlPath = '/examples/todolist';
+
 
 // Apply settings that are relevent to all environments.
 
@@ -60,20 +63,25 @@ if ('development' == app.get('env')) {
 
   app.use(express.errorHandler());
   
-  // Overwrite URL path to use root path.
+  // Overwrite URL path to use root path.e
   urlPath = '';
 }
 
 
 // Map web request URL paths to handler files.
 
-// Specifies handler for GET requests on "/" to be routes/index.js.
+// Map GET requests for "/" to routes.index().
 app.get('/', routes.index(TodoModel, urlPath));
 
+// Map GET requests for "/users" to user.list(). This is actually not used.
 app.get('/users', user.list);
+
+// Map POST requests for "/todo.json" to routes.addTodo().
 app.post('/todo.json', routes.addTodo(TodoModel));
+
+// Map PUT requests for "/todo/<id>.json" to routes.update().
 app.put('/todo/:id.json', routes.update(TodoModel));
-app.post('/todo.json', routes.addTodo(TodoModel));
+
 
 
 // Create HTTP server that starts listening to specified port.
